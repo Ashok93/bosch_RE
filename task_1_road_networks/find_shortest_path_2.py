@@ -1,6 +1,6 @@
 import heapq
 from graph_utils import Node, RoadNetworkGraph, build_road_network_graph
-# from plot_utils import visualize_road_network, visualize_shortest_path
+from plot_utils import visualize_road_network, visualize_shortest_path
 
 left_turn_cases = {
     "N":["W","NW","SW"],

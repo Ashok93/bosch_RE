@@ -15,7 +15,6 @@ class Node:
     def __init__(self, id):
         self.id = id
         self.neighbours_info = []
-        self.parents = []
         self.cost_to_node = float('inf')
         self.parent = None
         self.prev_heading_orientation = None
@@ -82,9 +81,7 @@ def build_road_network_graph(road_network_string):
         orientation = edge_info["orientation"]
 
         source_node.add_neighbour(destination_node, edge_weight, orientation)
-        destination_node.parents.append(source_node)
         if not is_directed:
             destination_node.add_neighbour(source_node, edge_weight, reverse_orientations[orientation])
-            source_node.parents.append(destination_node)
 
     return road_network_graph
