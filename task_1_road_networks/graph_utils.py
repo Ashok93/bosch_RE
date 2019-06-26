@@ -4,7 +4,9 @@ class Node:
     def __init__(self, id):
         self.id = id
         self.neighbours_info = []
-    
+        self.cost_to_node = float('inf')
+        self.parent = None
+        
     def add_neighbour(self, neighbour_node, traversal_weight, orientation):
         neighbour_info = {'node': neighbour_node, 
                           'traversal_weight': traversal_weight,
@@ -16,6 +18,9 @@ class Node:
         for neigh_info in self.neighbours_info:
             node_str += str(neigh_info["node"].id) + ' '
         return node_str
+    
+    def __lt__(self, other_node):
+        return self.cost_to_node < other_node.cost_to_node
 
 
 class RoadNetworkGraph:
