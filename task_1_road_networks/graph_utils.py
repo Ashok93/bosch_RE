@@ -1,15 +1,5 @@
 import json
-
-reverse_orientations = {
-    "N":"S",
-    "S":"N",
-    "E":"W",
-    "W":"E",
-    "NW":"SE",
-    "SE":"NW",
-    "NE":"SW",
-    "SW":"NE",
-}
+from constants import reverse_orientations
 
 class Node:
     def __init__(self, id):
@@ -44,7 +34,10 @@ class RoadNetworkGraph:
         self.nodes.append(node)
 
     def get_node(self, node_id):
-        return self.nodes[node_id]
+        for node in self.nodes:
+            if node.id == node_id:
+                return node
+        return None
 
     def __str__(self):
         graph_str = ""

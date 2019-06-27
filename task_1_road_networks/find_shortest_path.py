@@ -1,6 +1,6 @@
 import heapq
 from graph_utils import Node, RoadNetworkGraph, build_road_network_graph
-# from plot_utils import visualize_road_network, visualize_shortest_path
+from plot_utils import visualize_road_network, visualize_shortest_path
 
 def backtrack_graph(destination_node):
     # backtracking to build the result dictionary
@@ -22,8 +22,6 @@ def backtrack_graph(destination_node):
 def find_shortest_path(road_network_string, start_node_id, destination_node_id):
 
     road_network_graph = build_road_network_graph(road_network_string)
-    # visualize_road_network(road_network_graph)
-
     source_node = road_network_graph.get_node(start_node_id)
     destination_node = road_network_graph.get_node(destination_node_id)
     
@@ -52,11 +50,15 @@ def find_shortest_path(road_network_string, start_node_id, destination_node_id):
     
     shortest_path_info = backtrack_graph(destination_node)
 
-    # visualize_shortest_path(road_network_graph, shortest_path_info)
+    visualize_shortest_path(road_network_graph, shortest_path_info)
 
     return shortest_path_info
 
 if __name__ == "__main__":
-    road_network_string = '{"graph": {"nodes": [{"id": 0}, {"id": 1}, {"id": 2}, {"id": 3}, {"id": 4}, {"id": 5}, {"id": 6}, {"id": 7}, {"id": 8}], "edges": [{"directed": false, "source": 0, "target": 3, "weight": 3, "orientation": "S"}, {"directed": false, "source": 1, "target": 4, "weight": 2, "orientation": "S"}, {"directed": false, "source": 2, "target": 3, "weight": 3, "orientation": "W"}, {"directed": true, "source": 3, "target": 1, "weight": 2, "orientation": "NE"}, {"directed": false, "source": 3, "target": 4, "weight": 6, "orientation": "E"}, {"directed": true, "source": 3, "target": 6, "weight": 2, "orientation": "S"}, {"directed": false, "source": 4, "target": 5, "weight": 4, "orientation": "E"}, {"directed": false, "source": 4, "target": 8, "weight": 1, "orientation": "SE"}, {"directed": true, "source": 7, "target": 4, "weight": 3, "orientation": "N"}]}}'
-    shortest_path = find_shortest_path(road_network_string, 2, 5)
-    print(shortest_path)
+    
+    for test_road_network in test_road_networks:
+        road_network_string = test_road_network["road_network_string"]
+        source = test_road_network["source"]
+        destination = test_road_network["destination"]
+        shortest_path = find_shortest_path_greedy(road_network_string, source, destination)
+        print(shortest_path)
