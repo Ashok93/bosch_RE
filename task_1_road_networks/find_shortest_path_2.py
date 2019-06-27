@@ -1,7 +1,7 @@
 import heapq
 from graph_utils import Node, RoadNetworkGraph, build_road_network_graph
 from test_samples import test_road_networks
-from plot_utils import visualize_road_network, visualize_shortest_path
+# from plot_utils import visualize_road_network, visualize_shortest_path
 from constants import left_turn_cases
 
 def backtrack_graph(destination_node):
@@ -65,7 +65,7 @@ def find_shortest_path_greedy(road_network_string, start_node_id, destination_no
     
     shortest_path_info = backtrack_graph(destination_node)
 
-    visualize_shortest_path(road_network_graph, shortest_path_info)
+    # visualize_shortest_path(road_network_graph, shortest_path_info)
 
     return shortest_path_info
 

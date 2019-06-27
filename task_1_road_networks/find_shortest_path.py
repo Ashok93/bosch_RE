@@ -1,6 +1,7 @@
 import heapq
 from graph_utils import Node, RoadNetworkGraph, build_road_network_graph
-from plot_utils import visualize_road_network, visualize_shortest_path
+from test_samples import test_road_networks
+# from plot_utils import visualize_road_network, visualize_shortest_path
 
 def backtrack_graph(destination_node):
     # backtracking to build the result dictionary
@@ -50,7 +51,7 @@ def find_shortest_path(road_network_string, start_node_id, destination_node_id):
     
     shortest_path_info = backtrack_graph(destination_node)
 
-    visualize_shortest_path(road_network_graph, shortest_path_info)
+    # visualize_shortest_path(road_network_graph, shortest_path_info)
 
     return shortest_path_info
 
@@ -60,5 +61,5 @@ if __name__ == "__main__":
         road_network_string = test_road_network["road_network_string"]
         source = test_road_network["source"]
         destination = test_road_network["destination"]
-        shortest_path = find_shortest_path_greedy(road_network_string, source, destination)
+        shortest_path = find_shortest_path(road_network_string, source, destination)
         print(shortest_path)
