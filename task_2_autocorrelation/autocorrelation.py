@@ -1,27 +1,6 @@
 import numpy as np
 import time
 
-def autocorr_sample(signal):
-	start_time = time.time()
-	n = len(signal)
-	mean = sum(signal)/n
-	var = sum([(s - mean)**2 for s in signal]) / n
-	signal = [s - mean for s in signal]
-
-	auto_correlation = []
-	
-	for i in range(n):
-		c = 0
-		for j in range(10):
-			c += signal[j-i] * signal[j]
-
-		c = c / (var*(n-i))
-		auto_correlation.append(c)
-
-	print("--- classical corr: %s seconds ---" % (time.time() - start_time))
-	print(len(auto_correlation))
-	return auto_correlation
-
 def autocorr_sample_full(signal):
 	start_time = time.time()
 	n = len(signal)
@@ -34,7 +13,6 @@ def autocorr_sample_full(signal):
 	for i in range(n):
 		c = 0
 		for j in range(i, n):
-
 			c += signal[j-i] * signal[j]
 
 		c = c / (var*(n-i))
@@ -63,15 +41,8 @@ def autocorr_fft(x):
 	return c[:len(x)//2]
 
 if __name__ == "__main__":
-	arr = np.random.randn(200)
+	arr = np.random.randn(100)
 	print("For sample signal size {}".format(len(arr)))
-	print(autocorr_sample(arr))
 	print(autocorr_sample_full(arr))
 	print(autocorr_numpy(arr))
-	autocorr_fft(arr)
-	a = np.array([1,1,1,1,1,1,1,1,1,1])
-	c = 0
-	for i in range(100):
-		for j in range(10):
-			c += 1
-	print(c)
+	print(autocorr_fft(arr))
